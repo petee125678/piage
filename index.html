@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <title>piage</title>
+    <body style="background-color:rgb(255, 236, 188)">
+<h1 class="smoothdiv">how many pi's old are you?</h1>
+<form id="datetimes">
+<input id="date" type="date" >
+<div></div>
+<button type="submit" style="padding: none; font-size:10px" onClick="dothemath()">submit!</button>
+</form>
+<div class="smoothdiv">
+<h1 id="answer"></h1>
+</div>
+<style>
+  .smoothdiv {
+  background-image: url("bluep.jpg");
+  background-position: center;
+  background-size: 80px auto;
+  background-repeat: repeat;
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 3px 1px;
+  overflow: hidden;
+  color:rgb(255, 236, 188);
+}
+.smoothdiv h1 {
+margin: 0;
+line-height: 1.25;
+}
+
+</style>
+<script>
+const myForm = document.getElementById("datetimes");
+myForm.addEventListener("submit", function(event){event.preventDefault()})
+function dothemath(){
+  
+   const birthVal = document.getElementById("date").value
+   const birthDate = new Date(birthVal + "T00:00:00");
+   const now = new Date();
+   const diffMs = now - birthDate;
+   const daysonearth = diffMs / (60*60*24*1000)
+   const piagetotal = daysonearth / Math.PI
+   document.getElementById("answer").textContent = "you're about "+ piagetotal +" pi's old in days"
+   if (Number.isNaN(piagetotal)) {document.getElementById("answer").textContent = "sorry! enter a date please!!"}
+   if (daysonearth.toString().includes("-")) {document.getElementById("answer").textContent = "you're not born in the future!"}
+}
+
+
+
+</script>
+<footer class="smoothdiv">made with <3 by peter</footer>
+    </body>
+</html>
